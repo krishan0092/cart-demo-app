@@ -1,0 +1,29 @@
+appId: com.cartdemoapp
+name: Cart Flow Test
+---
+- clearState
+
+- launchApp
+
+- assertVisible:
+    id: products_list
+- tapOn:
+    id: product_4_add_button
+
+- tapOn:
+    id: cart_icon
+
+- assertVisible:
+    id: cart_list
+
+- tapOn:
+    id: cart_item_delete_4
+
+- assertVisible:
+    text: "Your cart is empty."
+
+- tapOn:
+    id: back_to_home
+
+- assertVisible:
+    id: products_list

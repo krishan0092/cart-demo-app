@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, { useMemo, useState } from 'react';
 import {
   View,
   Text,
@@ -9,18 +9,18 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import Header from '../components/Header';
-import {useCart} from '../context/CartContext';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import { useCart } from '../context/CartContext';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-const BASE_PRODUCTS = Array.from({length: 20}).map((_, idx) => ({
+const BASE_PRODUCTS = Array.from({ length: 20 }).map((_, idx) => ({
   id: idx + 1,
   name: `Product ${idx + 1}`,
   price: ((idx + 1) * 10).toFixed(2),
   image: `https://picsum.photos/200?random=${idx + 1}`,
 }));
 
-const HomeScreen = ({navigation}) => {
-  const {cartItems, addToCart, hydrated, t} = useCart();
+const HomeScreen = ({ navigation }) => {
+  const { cartItems, addToCart, hydrated, t } = useCart();
 
   const [listData, setListData] = useState(BASE_PRODUCTS);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -38,14 +38,14 @@ const HomeScreen = ({navigation}) => {
     }, 800);
   };
 
-  const renderItem = ({item}) => {
+  const renderItem = ({ item }) => {
     const isInCart = cartIds.includes(item.id);
     const addButtonTestID =
       item.id === 4 ? 'product_4_add_button' : `product_${item.id}_add_button`;
 
     return (
       <View style={styles.card}>
-        <Image source={{uri: item.image}} style={styles.image} resizeMode="cover" />
+        <Image source={{ uri: item.image }} style={styles.image} resizeMode="cover" />
 
         <View style={styles.infoRow}>
           <Text style={styles.name} numberOfLines={1}>
@@ -57,9 +57,9 @@ const HomeScreen = ({navigation}) => {
         <TouchableOpacity
           disabled={isInCart}
           onPress={() => addToCart(item)}
-          style={[styles.button, isInCart && styles.buttonAdded]}
           testID={addButtonTestID}
-          accessibilityLabel={addButtonTestID}>
+          accessibilityLabel={addButtonTestID}
+          style={[styles.button, isInCart && styles.buttonAdded]}>
           <Text style={styles.buttonText}>
             {isInCart ? t.added : t.addToCart}
           </Text>
@@ -67,6 +67,7 @@ const HomeScreen = ({navigation}) => {
       </View>
     );
   };
+
 
   if (!hydrated) {
     return (
@@ -111,10 +112,10 @@ const HomeScreen = ({navigation}) => {
 };
 
 const styles = StyleSheet.create({
-  container: {flex: 1, backgroundColor: '#f3f4f6'},
-  centered: {justifyContent: 'center', alignItems: 'center'},
-  listContent: {padding: 10, paddingBottom: 30},
-  row: {justifyContent: 'space-between'},
+  container: { flex: 1, backgroundColor: '#f3f4f6' },
+  centered: { justifyContent: 'center', alignItems: 'center' },
+  listContent: { padding: 10, paddingBottom: 30 },
+  row: { justifyContent: 'space-between' },
   card: {
     backgroundColor: '#ffffff',
     flex: 1,
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
     shadowColor: '#000',
     shadowOpacity: 0.08,
     shadowRadius: 8,
-    shadowOffset: {width: 0, height: 4},
+    shadowOffset: { width: 0, height: 4 },
     elevation: 3,
   },
   image: {
@@ -148,19 +149,19 @@ const styles = StyleSheet.create({
   price: {
     fontSize: 13,
     fontWeight: '700',
-    color: '#2563eb',
+    color: '#384560ff',
   },
   button: {
     marginTop: 10,
     marginHorizontal: 10,
     marginBottom: 10,
-    backgroundColor: '#2563eb',
+    backgroundColor: '#0f121cff',
     paddingVertical: 8,
     borderRadius: 8,
     alignItems: 'center',
   },
   buttonAdded: {
-    backgroundColor: '#16a34a',
+    backgroundColor: '#70d294ff',
   },
   buttonText: {
     color: '#ffffff',

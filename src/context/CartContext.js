@@ -1,4 +1,4 @@
-import React, {createContext, useContext, useEffect, useState} from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { strings } from '../i18n/strings';
 
@@ -7,7 +7,7 @@ const CartContext = createContext(null);
 const CART_KEY = '@cart_items';
 const LANG_KEY = '@language';
 
-export const CartProvider = ({children}) => {
+export const CartProvider = ({ children }) => {
   const [cartItems, setCartItems] = useState([]);
   const [language, setLanguage] = useState('en');
   const [hydrated, setHydrated] = useState(false);
@@ -36,12 +36,12 @@ export const CartProvider = ({children}) => {
 
   useEffect(() => {
     if (!hydrated) return;
-    AsyncStorage.setItem(CART_KEY, JSON.stringify(cartItems)).catch(() => {});
+    AsyncStorage.setItem(CART_KEY, JSON.stringify(cartItems)).catch(() => { });
   }, [cartItems, hydrated]);
 
   useEffect(() => {
     if (!hydrated) return;
-    AsyncStorage.setItem(LANG_KEY, language).catch(() => {});
+    AsyncStorage.setItem(LANG_KEY, language).catch(() => { });
   }, [language, hydrated]);
 
   const addToCart = product => {

@@ -11,7 +11,7 @@ import { useCart } from '../context/CartContext';
 import { Ionicons, Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 
 const Header = ({ title, showBack, onBackPress, navigation }) => {
-  const { cartCount, language, setLanguage, t } = useCart(); 
+  const { cartCount, language, setLanguage, t } = useCart();
   const [settingsVisible, setSettingsVisible] = useState(false);
 
   const toggleSettings = () => setSettingsVisible(v => !v);
@@ -74,7 +74,11 @@ const Header = ({ title, showBack, onBackPress, navigation }) => {
           <View style={styles.modalBox}>
             <Text style={styles.modalTitle}>{t.selectLanguage}</Text>
 
-            <Pressable style={styles.langRow} onPress={() => changeLanguage('en')}>
+            <Pressable
+              style={styles.langRow}
+              onPress={() => changeLanguage('en')}
+              testID="lang_en"
+              accessibilityLabel="lang_en">
               <Text style={styles.langLabel}>{t.english}</Text>
               {language === 'en' && (
                 <Feather name="check" size={18} color="#2563eb" />
@@ -83,7 +87,11 @@ const Header = ({ title, showBack, onBackPress, navigation }) => {
 
             <View style={styles.separator} />
 
-            <Pressable style={styles.langRow} onPress={() => changeLanguage('ar')}>
+            <Pressable
+              style={styles.langRow}
+              onPress={() => changeLanguage('ar')}
+              testID="lang_ar"
+              accessibilityLabel="lang_ar">
               <Text style={styles.langLabel}>{t.arabic}</Text>
               {language === 'ar' && (
                 <Feather name="check" size={18} color="#2563eb" />
